@@ -7,11 +7,12 @@ const app = express();
 console.log("SIMPLE EXPENSE TRACKER RUNNING");
 
 // ================= DATABASE CONNECTION =================
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "ta4nu",
-  database: "expense_tracker"
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: 3306
 });
 
 db.connect(err => {
