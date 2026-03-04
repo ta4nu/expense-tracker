@@ -7,18 +7,22 @@ const app = express();
 console.log("SIMPLE EXPENSE TRACKER RUNNING");
 
 // ================= DATABASE CONNECTION =================
-const connection = mysql.createConnection({
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  port: 3000
+  port: 3306
 });
 
 db.connect(err => {
   if (err) throw err;
   console.log("MySQL Connected...");
 });
+
+module.exports = db;  // ← this line is critical!
 
 // ================= MIDDLEWARE =================
 app.set("view engine", "ejs");
