@@ -1,14 +1,12 @@
 const express = require("express");
-const mysql = require("mysql2");
+const mysql = require("mysql2");        // only once!
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
-
 const app = express();
+
 console.log("SIMPLE EXPENSE TRACKER RUNNING");
 
 // ================= DATABASE CONNECTION =================
-const mysql = require('mysql');
-
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -21,9 +19,6 @@ db.connect(err => {
   if (err) throw err;
   console.log("MySQL Connected...");
 });
-
-module.exports = db;  // ← this line is critical!
-
 // ================= MIDDLEWARE =================
 app.set("view engine", "ejs");
 
